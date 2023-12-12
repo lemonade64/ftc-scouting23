@@ -106,6 +106,9 @@ export default function Home() {
                     <label className="inline-flex items-center">
                       <input
                         type="checkbox"
+                        name="yellow-pixel"
+                        id="yellow-pixel"
+                        value="true"
                         className="form-checkbox rounded bg-gray-200 border-white focus:bg-gray-200 text-black focus:ring-0"
                       ></input>
                       <span className="ml-2 font-normal">Yellow Pixel</span>
@@ -113,6 +116,9 @@ export default function Home() {
                     <label className="inline-flex items-center">
                       <input
                         type="checkbox"
+                        name="purple-pixel"
+                        id="purple-pixel"
+                        value="true"
                         className="form-checkbox rounded bg-gray-200 border-white focus:bg-gray-200 text-black focus:ring-0"
                       ></input>
                       <span className="ml-2 font-normal">Purple Pixel</span>
@@ -120,6 +126,9 @@ export default function Home() {
                     <label className="inline-flex items-center">
                       <input
                         type="checkbox"
+                        name="team-prop"
+                        id="team-prop"
+                        value="true"
                         className="form-checkbox rounded bg-gray-200 border-white focus:bg-gray-200 text-black focus:ring-0"
                       ></input>
                       <span className="ml-2 font-normal">Team Prop</span>
@@ -255,3 +264,5 @@ export default function Home() {
 // map
 // component
 // responsive
+// seo
+// fieldset
