@@ -11,7 +11,5 @@ export default function Home() {
 }
 
 // map
-// component
 // responsive
 // seo
-// string only

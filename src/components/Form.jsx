@@ -6,20 +6,48 @@ export default function Form() {
   const router = useRouter();
   const [formData, setFormData] = useState({});
 
+  // const [teamNumber, setTeamNumber] = useState("");
+  // const [teamName, setTeamName] = useState("");
+  // const [qualificationNumber, setQualificationNumber] = useState("");
+  // const [allianceColour, setAllianceColour] = useState("");
+  // const [autonomousCycles, setAutonomousCycles] = useState("");
+  // const [yellowPixel, setYellowPixel] = useState("");
+  // const [purplePixel, setPurplePixel] = useState("");
+  // const [teamProp, setTeamProp] = useState("");
+  // const [drone, setDrone] = useState("");
+  // const [climbTime, setClimbTime] = useState("");
+  // const [teleOpCycles, setTeleOpCycles] = useState("");
+  // const [penalties, setPenalties] = useState("");
+  // const [notes, setNotes] = useState("");
+
   const clearFormData = () => {
     setFormData({});
   };
 
-  const handleChange = (event) => {
-    const key = event.target.name;
-    const value = event.target.value;
+  const handleChange = (e) => {
+    const key = e.target.name;
+    const value = e.target.value;
     setFormData((values) => ({ ...values, [key]: value }));
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     console.log(formData);
+
+    const response = await fetch("/api/submit", {
+      method: "POST",
+      body: JSON.stringify(formData),
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    });
+
+    const content = await response.json();
+
+    alert(content.data.tableRange);
     clearFormData();
+
     router.push("/thank-you");
   };
 
@@ -36,11 +64,12 @@ export default function Form() {
             </label>
             <div className="mt-2">
               <input
+                // defaultValue={""}
                 autoComplete="off"
                 type="text"
-                name="team-number"
-                id="team-number"
-                value={"" || formData.teamNumber}
+                name="teamNumber"
+                id="teamNumber"
+                value={formData.teamNumber || ""}
                 onChange={handleChange}
                 className="block w-full rounded-md border-1 border-gray-300 focus:border-black py-1.5 text-black shadow-sm placeholder:text-gray-400 text-sm focus:ring-0"
               />
@@ -53,11 +82,12 @@ export default function Form() {
             </label>
             <div className="mt-2">
               <input
+                // defaultValue={""}
                 autoComplete="off"
                 type="text"
-                name="team-name"
-                id="team-name"
-                value={"" || formData.teamName}
+                name="teamName"
+                id="teamName"
+                value={formData.teamName || ""}
                 onChange={handleChange}
                 className="block w-full rounded-md border-1 border-gray-300 focus:border-black py-1.5 text-black shadow-sm placeholder:text-gray-400 text-sm focus:ring-0"
               />
@@ -70,11 +100,12 @@ export default function Form() {
             </label>
             <div className="mt-2">
               <input
+                // defaultValue={""}
                 autoComplete="off"
                 type="text"
-                name="qualification-number"
-                id="qualification-number"
-                value={"" || formData.qualificationNumber}
+                name="qualificationNumber"
+                id="qualificationNumber"
+                value={formData.qualificationNumber || ""}
                 onChange={handleChange}
                 className="block w-full rounded-md border-1 border-gray-300 focus:border-black py-1.5 text-black shadow-sm placeholder:text-gray-400 text-sm focus:ring-0"
               />
@@ -87,9 +118,10 @@ export default function Form() {
             </label>
             <div className="mt-2">
               <select
-                id="colour"
-                name="colour"
-                value={"Blue" || formData.allianceColour}
+                // defaultValue={"Blue"}
+                name="allianceColour"
+                id="allianceColour"
+                value={(formData.allianceColour || "") ?? "Blue"}
                 onChange={handleChange}
                 className="block w-full rounded-md border-1 border-gray-300 py-1.5 text-black shadow-sm text-sm focus:ring-0"
               >
@@ -105,11 +137,12 @@ export default function Form() {
             </label>
             <div className="mt-2">
               <input
+                // defaultValue={""}
                 autoComplete="off"
                 type="text"
-                name="autonomous-cycles"
-                id="autonomous-cycles"
-                value={"" || formData.autonomousCycles}
+                name="autonomousCycles"
+                id="autonomousCycles"
+                value={formData.autonomousCycles || ""}
                 onChange={handleChange}
                 className="block w-full rounded-md border-1 border-gray-300 focus:border-black py-1.5 text-black shadow-sm placeholder:text-gray-400 text-sm focus:ring-0"
               />
@@ -121,9 +154,10 @@ export default function Form() {
             </label>
             <div className="mt-2">
               <select
-                id="position"
-                name="position"
-                value={"Audience" || formData.position}
+                // defaultValue={"Audience"}
+                name="autonomousPosition"
+                id="autonomousPosition"
+                value={(formData.autonomousPosition || "") ?? "Audience"}
                 onChange={handleChange}
                 className="block w-full rounded-md border-1 border-gray-300 py-1.5 text-black shadow-sm text-sm focus:ring-0"
               >
@@ -139,10 +173,11 @@ export default function Form() {
               <div className="grid grid-cols-3 gap-x-1 items-center">
                 <label className="inline-flex items-center">
                   <input
+                    // defaultValue={"no"}
                     type="checkbox"
-                    name="yellow-pixel"
-                    id="yellow-pixel"
-                    value={"yes" || formData.yellowPixel}
+                    name="yellowPixel"
+                    id="yellowPixel"
+                    value={(formData.yellowPixel || "") ?? "no"}
                     onChange={handleChange}
                     className="form-checkbox rounded bg-gray-200 border-white focus:bg-gray-200 text-black focus:ring-0"
                   ></input>
@@ -150,10 +185,11 @@ export default function Form() {
                 </label>
                 <label className="inline-flex items-center">
                   <input
+                    // defaultValue={"no"}
                     type="checkbox"
-                    name="purple-pixel"
-                    id="purple-pixel"
-                    value={"yes" || formData.purplePixel}
+                    name="purplePixel"
+                    id="purplePixel"
+                    value={(formData.purplePixel || "") ?? "no"}
                     onChange={handleChange}
                     className="form-checkbox rounded bg-gray-200 border-white focus:bg-gray-200 text-black focus:ring-0"
                   ></input>
@@ -161,10 +197,11 @@ export default function Form() {
                 </label>
                 <label className="inline-flex items-center">
                   <input
+                    // defaultValue={"no"}
                     type="checkbox"
-                    name="team-prop"
-                    id="team-prop"
-                    value={"yes" || formData.teamProp}
+                    name="teamProp"
+                    id="teamProp"
+                    value={(formData.teamProp || "") ?? "no"}
                     onChange={handleChange}
                     className="form-checkbox rounded bg-gray-200 border-white focus:bg-gray-200 text-black focus:ring-0"
                   ></input>
@@ -179,9 +216,10 @@ export default function Form() {
             </label>
             <div className="mt-2">
               <select
-                id="drone"
+                // defaultValue={"N/A (+0 Points)"}
                 name="drone"
-                value={"N/A (+0 Points)" || formData.drone}
+                id="drone"
+                value={(formData.drone || "N/A (+0 Points)") ?? "Audience"}
                 onChange={handleChange}
                 className="block w-full rounded-md border-1 border-gray-300 py-1.5 text-black shadow-sm text-sm focus:ring-0"
               >
@@ -199,11 +237,12 @@ export default function Form() {
             </label>
             <div className="mt-2">
               <input
+                // defaultValue={""}
                 autoComplete="off"
                 type="text"
-                name="climb-time"
-                id="climb-time"
-                value={"" || formData.climbTime}
+                name="climbTime"
+                id="climbTime"
+                value={formData.climbTime || ""}
                 onChange={handleChange}
                 className="block w-full rounded-md border-1 border-gray-300 focus:border-black py-1.5 text-black shadow-sm placeholder:text-gray-400 text-sm focus:ring-0"
               />
@@ -215,11 +254,12 @@ export default function Form() {
             </label>
             <div className="mt-2">
               <input
+                // defaultValue={""}
                 autoComplete="off"
                 type="text"
-                name="teleop-cycles"
-                id="teleop-cycles"
-                value={"" || formData.teleopCycles}
+                name="teleOpCycles"
+                id="teleOpCycles"
+                value={formData.teleOpCycles || ""}
                 onChange={handleChange}
                 className="block w-full rounded-md border-1 border-gray-300 focus:border-black py-1.5 text-black shadow-sm placeholder:text-gray-400 text-sm focus:ring-0"
               />
@@ -231,11 +271,12 @@ export default function Form() {
             </label>
             <div className="mt-2">
               <input
+                // defaultValue={""}
                 autoComplete="off"
                 type="text"
                 name="penalties"
                 id="penalties"
-                value={"" || formData.penalties}
+                value={formData.penalties || ""}
                 onChange={handleChange}
                 className="block w-full rounded-md border-1 border-gray-300 focus:border-black py-1.5 text-black shadow-sm placeholder:text-gray-400 text-sm focus:ring-0"
               />
@@ -247,15 +288,15 @@ export default function Form() {
             </label>
             <div className="mt-2">
               <textarea
+                // defaultValue={""}
                 autoComplete="off"
-                id="notes"
                 name="notes"
-                value={"" || formData.notes}
+                id="notes"
+                value={formData.notes || ""}
                 onChange={handleChange}
                 rows={10}
                 placeholder=""
                 className="resize-y block w-full rounded-md border-1 border-gray-300 focus:border-black py-1.5 text-black shadow-sm placeholder:text-gray-400 text-sm focus:ring-0"
-                defaultValue={""}
               />
             </div>
           </div>
