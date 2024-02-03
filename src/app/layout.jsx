@@ -10,12 +10,12 @@ const poppins = Poppins({
 
 export const metadata = {
   title: "Greybacks FTC Scouting",
-  description: "Scouting Tool for the FTC Worlds Championship",
+  description: "Scouting Tool for the FIRST Tech Challenge World Championship",
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" className="select-none">
       <body className={poppins.className}>{children}</body>
     </html>
   );
