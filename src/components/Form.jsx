@@ -38,7 +38,6 @@ export default function Form() {
       method: "POST",
       body: JSON.stringify(formData),
       headers: {
-        Accept: "application/json",
         "Content-Type": "application/json",
       },
     });
