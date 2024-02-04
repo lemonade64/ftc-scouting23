@@ -5,6 +5,7 @@ import submit from "@/actions/submit";
 import { useFormState, useFormStatus } from "react-dom";
 
 export default function Form() {
+  // const router = useRouter();
   // const [formData, setFormData] = useState({});
   const [state, action] = useFormState(submit, { message: "" });
   const { pending } = useFormStatus();
@@ -83,7 +84,6 @@ export default function Form() {
             <div className="mt-2">
               <input
                 /* defaultValue={""} */
-                required
                 autoComplete="off"
                 type="text"
                 name="teamNumber"
@@ -169,7 +169,6 @@ export default function Form() {
             <div className="mt-2">
               <input
                 /* defaultValue={""} */
-                required
                 autoComplete="off"
                 type="text"
                 name="autonomousCycles"
@@ -308,7 +307,6 @@ export default function Form() {
             <div className="mt-2">
               <input
                 /*  defaultValue={""} */
-                required
                 autoComplete="off"
                 type="text"
                 name="teleOpCycles"

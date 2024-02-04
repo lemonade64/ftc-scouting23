@@ -1,27 +1,23 @@
 "use server";
 
 export default async function submit(formData) {
-  console.log(formData);
+  console.log(formData.teamNumber);
 
-  //   try {
-  //     const response = await fetch("/api/submit", {
-  //       method: "POST",
-  //       body: JSON.stringify(formData),
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //     });
-
-  //     if (response.ok) {
-  //       console.log("Form Submitted!");
-  //     } else {
-  //       throw new Error("network error");
-  //     }
-  //   } catch (e) {
-  //     console.error("error: ", e);
-  //   }
-
-  //   const content = await response.json();
-
-  //   alert(content.data.tableRange);
+  try {
+    const res = await fetch("http://localhost:3000/api/submit", {
+      method: "POST",
+      body: JSON.stringify(formData),
+      headers: {
+        "content-type": "application/json",
+      },
+    });
+    console.log(res);
+    if (res.ok) {
+      console.log("submitted!");
+    } else {
+      console.log("network error");
+    }
+  } catch (e) {
+    console.log("error", e);
+  }
 }
