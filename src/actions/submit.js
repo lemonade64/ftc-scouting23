@@ -12,12 +12,15 @@ export default async function submit(formData) {
       },
     });
     console.log(res);
+
     if (res.ok) {
-      console.log("submitted!");
+      console.log("Success :" + res.statusText);
+      console.log("Form Submitted!");
     } else {
-      console.log("network error");
+      console.log("Failure:" + res.statusText);
+      throw new Error("HTTP " + res.status);
     }
   } catch (e) {
-    console.log("error", e);
+    console.log("Failure:", e);
   }
 }
