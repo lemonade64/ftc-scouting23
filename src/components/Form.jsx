@@ -67,13 +67,13 @@ export default function Form() {
   }
 
   return (
-    <main className="h-screen flex items-center justify-center mx-auto max-w-2xl sm:max-w-[800px] px-6">
+    <main className="h-screen flex items-center justify-center mx-auto sm:max-w-3xl md:max-w-5xl px-6 my-10">
       <form /* onSubmit={handleSubmit} */ action={submit}>
         <h1 className="mt-4 font-bold text-black text-2xl text-center">
           Greybacks FTC Scouting Form
         </h1>
-        <div className="mt-10 grid grid-cols-1 gap-x-4 lg:gap-x-8 gap-y-4 sm:gap-y-10 lg:grid-cols-10 sm:grid-cols-1">
-          <div className="sm:col-span-3">
+        <div className="mt-10 grid gap-x-8 gap-y-8 grid-cols-6">
+          <div className="md:col-span-2 col-span-3">
             <label
               htmlFor="teamNumber"
               className="block text-sm font-medium text-black text-center"
@@ -95,7 +95,7 @@ export default function Form() {
             </div>
           </div>
 
-          <div className="sm:col-span-3">
+          <div className="md:col-span-2 col-span-3">
             <label
               htmlFor="teamName"
               className="block text-sm font-medium text-black text-center"
@@ -116,7 +116,7 @@ export default function Form() {
             </div>
           </div>
 
-          <div className="sm:col-span-2">
+          <div className="md:col-span-2 col-span-3">
             <label
               htmlFor="qualificationNumber"
               className="block text-sm font-medium text-black text-center"
@@ -137,7 +137,7 @@ export default function Form() {
             </div>
           </div>
 
-          <div className="sm:col-span-2">
+          <div className="md:col-span-2 col-span-3">
             <label
               htmlFor="allianceColour"
               className="block text-sm font-medium text-black text-center"
@@ -159,7 +159,7 @@ export default function Form() {
             </div>
           </div>
 
-          <div className="sm:col-span-2">
+          <div className="md:col-span-2 col-span-3">
             <label
               htmlFor="autonomousCycles"
               className="block text-sm font-medium text-black text-center"
@@ -180,7 +180,7 @@ export default function Form() {
               />
             </div>
           </div>
-          <div className="sm:col-span-2">
+          <div className="md:col-span-2 col-span-3">
             <label
               htmlFor="autonomousPosition"
               className="block text-sm font-medium text-black text-center"
@@ -202,13 +202,13 @@ export default function Form() {
             </div>
           </div>
 
-          <label className="block text-sm font-medium text-black col-span-6 text-center">
+          <label className="block text-sm font-medium text-black md:col-span-4 col-span-6 max-[768px]:row-span-1 text-center">
             Auto Spike Mark
             <div className="mt-4">
-              <div className="grid grid-cols-3 gap-x-1 items-center">
+              <div className="grid grid-cols-3 gap-x-2 items-center">
                 <label
                   htmlFor="yellowPixel"
-                  className="inline-flex items-center"
+                  className="inline-flex items-center mx-auto"
                 >
                   <input
                     /* defaultValue={"No"} */
@@ -223,7 +223,7 @@ export default function Form() {
                 </label>
                 <label
                   htmlFor="purplePixel"
-                  className="inline-flex items-center"
+                  className="inline-flex items-center mx-auto"
                 >
                   <input
                     /* defaultValue={"No"} */
@@ -236,7 +236,10 @@ export default function Form() {
                   ></input>
                   <span className="ml-2 font-normal">Purple Pixel</span>
                 </label>
-                <label htmlFor="teamProp" className="inline-flex items-center">
+                <label
+                  htmlFor="teamProp"
+                  className="inline-flex items-center mx-auto"
+                >
                   <input
                     /* defaultValue={"No"} */
                     type="checkbox"
@@ -251,7 +254,7 @@ export default function Form() {
               </div>
             </div>
           </label>
-          <div className="sm:col-span-3">
+          <div className="md:col-span-2 col-span-3">
             <label
               htmlFor="drone"
               className="block text-sm font-medium text-black text-center"
@@ -275,7 +278,7 @@ export default function Form() {
             </div>
           </div>
 
-          <div className="sm:col-span-3">
+          <div className="md:col-span-2 col-span-3">
             <label
               htmlFor="climbTime"
               className="block text-sm font-medium text-black text-center"
@@ -295,7 +298,7 @@ export default function Form() {
               />
             </div>
           </div>
-          <div className="sm:col-span-2">
+          <div className="md:col-span-2 col-span-3">
             <label
               htmlFor="teleOpCycles"
               className="block text-sm font-medium text-black text-center"
@@ -316,7 +319,7 @@ export default function Form() {
               />
             </div>
           </div>
-          <div className="sm:col-span-2">
+          <div className="md:col-span-2 col-span-3">
             <label
               htmlFor="penalties"
               className="block text-sm font-medium text-black text-center"
@@ -336,7 +339,7 @@ export default function Form() {
               />
             </div>
           </div>
-          <div className="sm:col-span-10 pt-6 border-t-[1px] border-gray-300">
+          <div className="col-span-6 md:row-span-1 pt-6 border-t-[1px] border-gray-300">
             <label
               htmlFor="notes"
               className="block text-sm font-medium text-black text-center"
