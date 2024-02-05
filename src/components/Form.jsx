@@ -41,13 +41,17 @@ export default function Form() {
     const data = JSON.stringify(formData);
     console.log(data);
     try {
-      const res = await fetch("http://localhost:3000/api/submit", {
-        method: "POST",
-        body: JSON.stringify(formData),
-        headers: {
-          "content-type": "application/json",
-        },
-      });
+      const res = await fetch(
+        "http://ftc-scouting.vercel.app:3000/api/submit",
+        {
+          // change to localhost for testing
+          method: "POST",
+          body: JSON.stringify(formData),
+          headers: {
+            "content-type": "application/json",
+          },
+        }
+      );
       console.log(res);
 
       if (res.ok) {
