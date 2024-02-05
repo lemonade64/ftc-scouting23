@@ -38,9 +38,9 @@ Scouting app for the 2023/2024 FTC season (CENTERSTAGE).
 
 ## Usage
 
-1. **Data Input:** Start by entering relevant data for each metric
+1. **Data Input:**: Start by entering relevant data for each metric
 2. **Form Submission**: Ensure all the entered data is accurate and complete, then submit the form
-3. **Data Analysis:** Using Google Sheets, you can visualise and evaluate the stats accordingly
+3. **Data Analysis:**: Using Google Sheets, you can visualise and evaluate the stats accordingly
 
 ## Contributors
 
@@ -49,7 +49,7 @@ Scouting app for the 2023/2024 FTC season (CENTERSTAGE).
 
 ## License
 
-This project is licensed under the [MIT License](/LICENSE). Feel free to use, modify, and distribute as needed.
+This project is licensed under the [MIT License](/LICENSE). Feel free to use, modify and distribute as needed.
 
 For additional information, check the wiki.
 
