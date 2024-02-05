@@ -1,24 +1,57 @@
-/* "use client";
+"use client";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export default function Form() {
   const router = useRouter();
-  const [formData, setFormData] = useState({});
 
-  const clearFormData = () => {
-    setFormData({});
-  };
+  const [teamNumber, setTeamNumber] = useState("");
+  const [teamName, setTeamName] = useState("");
+  const [qualificationNumber, setQualificationNumber] = useState("");
+  const [allianceColour, setAllianceColour] = useState("Blue");
+  const [autonomousCycles, setAutonomousCycles] = useState("");
+  const [autonomousPosition, setautonomousPosition] = useState("Audience");
+  const [yellowPixel, setYellowPixel] = useState("No");
+  const [purplePixel, setPurplePixel] = useState("No");
+  const [teamProp, setTeamProp] = useState("No");
+  const [drone, setDrone] = useState("N/A (+0 Points)");
+  const [climbTime, setClimbTime] = useState("");
+  const [teleOpCycles, setTeleOpCycles] = useState("");
+  const [penalties, setPenalties] = useState("");
+  const [notes, setNotes] = useState("");
 
-  const handleChange = (e) => {
-    const key = e.target.name;
-    const value = e.target.value;
-    setFormData((values) => ({ ...values, [key]: value }));
-  };
+  // const [formData, setFormData] = useState({});
+
+  // const clearFormData = () => {
+  //   setFormData({});
+  // };
+
+  // const handleChange = (e) => {
+  //   const key = e.target.name;
+  //   const value = e.target.value;
+  //   setFormData((values) => ({ ...values, [key]: value }));
+  // };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const formData = {
+      teamNumber,
+      teamName,
+      qualificationNumber,
+      allianceColour,
+      autonomousCycles,
+      yellowPixel,
+      purplePixel,
+      teamProp,
+      drone,
+      climbTime,
+      teleOpCycles,
+      penalties,
+      notes,
+    };
     console.log(formData);
+    const data = JSON.stringify(formData);
+    console.log(data);
     try {
       const res = await fetch("http://localhost:3000/api/submit", {
         method: "POST",
@@ -30,17 +63,17 @@ export default function Form() {
       console.log(res);
 
       if (res.ok) {
-        console.log("Success :" + res.statusText);
+        console.log("Success: " + res.statusText);
         console.log("Form Submitted!");
       } else {
-        console.log("Failure:" + res.statusText);
+        console.log("Failure: " + res.statusText);
         throw new Error("HTTP " + res.status);
       }
     } catch (e) {
-      console.log("Failure:", e);
+      console.log("Failure: ", e);
     }
 
-    clearFormData();
+    // clearFormData();
     router.push("/thank-you");
   };
 
@@ -60,13 +93,14 @@ export default function Form() {
             </label>
             <div className="mt-2">
               <input
-                
                 autoComplete="off"
                 type="text"
                 name="teamNumber"
                 id="teamNumber"
-                value={formData.teamNumber || ""}
-                onChange={handleChange}
+                /* value={formData.teamNumber || ""}
+                onChange={handleChange} */
+                value={teamNumber}
+                onChange={(e) => setTeamNumber(e.target.value)}
                 className="block w-full rounded-md border-1 border-gray-300 focus:border-black py-1.5 text-black shadow-sm placeholder:text-gray-400 text-sm focus:ring-0"
               />
             </div>
@@ -81,13 +115,14 @@ export default function Form() {
             </label>
             <div className="mt-2">
               <input
-                
                 autoComplete="off"
                 type="text"
                 name="teamName"
                 id="teamName"
-                value={formData.teamName || ""}
-                onChange={handleChange}
+                /* value={formData.teamName || ""}
+                onChange={handleChange} */
+                value={teamName}
+                onChange={(e) => setTeamName(e.target.value)}
                 className="block w-full rounded-md border-1 border-gray-300 focus:border-black py-1.5 text-black shadow-sm placeholder:text-gray-400 text-sm focus:ring-0"
               />
             </div>
@@ -102,13 +137,14 @@ export default function Form() {
             </label>
             <div className="mt-2">
               <input
-                
                 autoComplete="off"
                 type="text"
                 name="qualificationNumber"
                 id="qualificationNumber"
-                value={formData.qualificationNumber || ""}
-                onChange={handleChange}
+                /* value={formData.qualificationNumber || ""}
+                onChange={handleChange} */
+                value={qualificationNumber}
+                onChange={(e) => setQualificationNumber(e.target.value)}
                 className="block w-full rounded-md border-1 border-gray-300 focus:border-black py-1.5 text-black shadow-sm placeholder:text-gray-400 text-sm focus:ring-0"
               />
             </div>
@@ -125,9 +161,11 @@ export default function Form() {
               <select
                 name="allianceColour"
                 id="allianceColour"
-                value={formData.allianceColour || "Blue"}
-                onChange={handleChange}
-                className="block w-full rounded-md border-1 border-gray-300 py-1.5 text-black shadow-sm text-sm focus:ring-0"
+                /* value={formData.allianceColour || "Blue"}
+                onChange={handleChange} */
+                value={allianceColour}
+                onChange={(e) => setAllianceColour(e.target.value)}
+                className="block w-full rounded-md border-1 border-gray-300 py-1.5 text-black shadow-sm text-sm focus:ring-0 focus:ring-gray-300"
               >
                 <option>Blue</option>
                 <option>Red</option>
@@ -144,13 +182,14 @@ export default function Form() {
             </label>
             <div className="mt-2">
               <input
-                
                 autoComplete="off"
                 type="text"
                 name="autonomousCycles"
                 id="autonomousCycles"
-                value={formData.autonomousCycles || ""}
-                onChange={handleChange}
+                /* value={formData.autonomousCycles || ""}
+                onChange={handleChange} */
+                value={autonomousCycles}
+                onChange={(e) => setAutonomousCycles(e.target.value)}
                 className="block w-full rounded-md border-1 border-gray-300 focus:border-black py-1.5 text-black shadow-sm placeholder:text-gray-400 text-sm focus:ring-0"
               />
             </div>
@@ -166,8 +205,10 @@ export default function Form() {
               <select
                 name="autonomousPosition"
                 id="autonomousPosition"
-                value={formData.autonomousPosition || "Audience"} // ""
-                onChange={handleChange}
+                /* value={formData.autonomousPosition || "Audience"} // ""
+                onChange={handleChange} */
+                value={autonomousPosition}
+                onChange={(e) => setautonomousPosition(e.target.value)}
                 className="block w-full rounded-md border-1 border-gray-300 py-1.5 text-black shadow-sm text-sm focus:ring-0"
               >
                 <option>Audience</option>
@@ -188,8 +229,10 @@ export default function Form() {
                     type="checkbox"
                     name="yellowPixel"
                     id="yellowPixel"
-                    value={formData.yellowPixel || "Yes"}
-                    onChange={handleChange}
+                    /* value={formData.yellowPixel || "Yes"}
+                    onChange={handleChange} */
+                    value={yellowPixel}
+                    onChange={(e) => setYellowPixel(e.target.value)}
                     className="form-checkbox rounded bg-gray-200 border-white focus:bg-gray-200 text-black focus:ring-0"
                   ></input>
                   <span className="ml-2 font-normal">Yellow Pixel</span>
@@ -202,8 +245,10 @@ export default function Form() {
                     type="checkbox"
                     name="purplePixel"
                     id="purplePixel"
-                    value={formData.purplePixel || "Yes"}
-                    onChange={handleChange}
+                    /* value={formData.purplePixel || "Yes"}
+                    onChange={handleChange} */
+                    value={purplePixel}
+                    onChange={(e) => setPurplePixel(e.target.value)}
                     className="form-checkbox rounded bg-gray-200 border-white focus:bg-gray-200 text-black focus:ring-0"
                   ></input>
                   <span className="ml-2 font-normal">Purple Pixel</span>
@@ -216,8 +261,10 @@ export default function Form() {
                     type="checkbox"
                     name="teamProp"
                     id="teamProp"
-                    value={formData.teamProp || "Yes"}
-                    onChange={handleChange}
+                    /* value={formData.teamProp || "Yes"}
+                    onChange={handleChange} */
+                    value={teamProp}
+                    onChange={(e) => setTeamProp(e.target.value)}
                     className="form-checkbox rounded bg-gray-200 border-white focus:bg-gray-200 text-black focus:ring-0"
                   ></input>
                   <span className="ml-2 font-normal">Team Prop</span>
@@ -236,8 +283,10 @@ export default function Form() {
               <select
                 name="drone"
                 id="drone"
-                value={formData.drone || "N/A (+0 Points)"}
-                onChange={handleChange}
+                /* value={formData.drone || "N/A (+0 Points)"}
+                onChange={handleChange} */
+                value={drone}
+                onChange={(e) => setDrone(e.target.value)}
                 className="block w-full rounded-md border-1 border-gray-300 py-1.5 text-black shadow-sm text-sm focus:ring-0"
               >
                 <option>N/A (+0 Points)</option>
@@ -261,8 +310,10 @@ export default function Form() {
                 type="text"
                 name="climbTime"
                 id="climbTime"
-                value={formData.climbTime || ""}
-                onChange={handleChange}
+                /* value={formData.climbTime || ""}
+                onChange={handleChange} */
+                value={climbTime}
+                onChange={(e) => setClimbTime(e.target.value)}
                 className="block w-full rounded-md border-1 border-gray-300 focus:border-black py-1.5 text-black shadow-sm placeholder:text-gray-400 text-sm focus:ring-0"
               />
             </div>
@@ -280,8 +331,10 @@ export default function Form() {
                 type="text"
                 name="teleOpCycles"
                 id="teleOpCycles"
-                value={formData.teleOpCycles || ""}
-                onChange={handleChange}
+                /* value={formData.teleOpCycles || ""}
+                onChange={handleChange} */
+                value={teleOpCycles}
+                onChange={(e) => setTeleOpCycles(e.target.value)}
                 className="block w-full rounded-md border-1 border-gray-300 focus:border-black py-1.5 text-black shadow-sm placeholder:text-gray-400 text-sm focus:ring-0"
               />
             </div>
@@ -299,8 +352,10 @@ export default function Form() {
                 type="text"
                 name="penalties"
                 id="penalties"
-                value={formData.penalties || ""}
-                onChange={handleChange}
+                /* value={formData.penalties || ""}
+                onChange={handleChange} */
+                value={penalties}
+                onChange={(e) => setPenalties(e.target.value)}
                 className="block w-full rounded-md border-1 border-gray-300 focus:border-black py-1.5 text-black shadow-sm placeholder:text-gray-400 text-sm focus:ring-0"
               />
             </div>
@@ -317,8 +372,10 @@ export default function Form() {
                 autoComplete="off"
                 name="notes"
                 id="notes"
-                value={formData.notes || ""}
-                onChange={handleChange}
+                /* value={formData.notes || ""}
+                onChange={handleChange} */
+                value={notes}
+                onChange={(e) => setNotes(e.target.value)}
                 rows={10}
                 placeholder=""
                 className="resize-y block w-full rounded-md border-1 border-gray-300 focus:border-black py-1.5 text-black shadow-sm placeholder:text-gray-400 text-sm focus:ring-0"
@@ -329,7 +386,7 @@ export default function Form() {
         <div className="mt-6 flex items-center justify-end gap-x-6">
           <button
             type="reset"
-            onClick={clearFormData}
+            /* onClick={clearFormData} */
             className="text-sm font-semibold text-black"
           >
             Reset
@@ -345,8 +402,8 @@ export default function Form() {
     </main>
   );
 }
-*/
 
+/*
 "use client";
 import submit from "@/actions/submit";
 import { useFormState, useFormStatus } from "react-dom";
@@ -621,3 +678,4 @@ export default function Form() {
     </main>
   );
 }
+*/
