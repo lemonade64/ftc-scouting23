@@ -16,8 +16,6 @@ export const metadata = {
   description:
     "Scouting Tool for the 2023/2024 FIRST Tech Challenge World Championship.",
   category: "technology",
-  keywords:
-    "access, action, ads, agency, agent, appointments, consulting, contact, creative, custom, digital, expertise, guaranteed, high, idea, innovative, lead, management, package, results, revolutionary, sales, weekly, property listings, open houses, investment properties, residential properties, commercial real estate, rental properties, house hunting, sydney real estate, inner-city, sydney property market, harbour views, beachfront properties, eastern suburbs, digital marketing for real estate, social media advertising, lead generation for real estate agents, content creation for property listings, instagram/facebook ads for real estate, SEO for real estate agencies, buyer/seller tips and advice, property showcase videos, virtual property tours, community insights, neighborhood spotlights, real estate agent services, property management, buyer/seller representation, home valuation services, comparative market analysis (CMA), real estate auctions",
   metadataBase: new URL("https://ftc-scouting.vercel.app/"),
   openGraph: {
     title: "FTC Scouting",
