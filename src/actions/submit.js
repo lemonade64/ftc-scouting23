@@ -1,7 +1,7 @@
 "use server";
 
 export default async function submit(formData) {
-  console.log(formData.teamNumber);
+  console.log(formData);
 
   try {
     const res = await fetch("http://localhost:3000/api/submit", {
