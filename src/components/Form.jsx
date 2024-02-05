@@ -1,9 +1,11 @@
 "use client";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 
 export default function Form() {
   const router = useRouter();
+  const pathname = usePathname();
+  const title = pathname.slice(1).replace(/^\w/, (c) => c.toUpperCase());
 
   const [teamNumber, setTeamNumber] = useState("");
   const [teamName, setTeamName] = useState("");
@@ -36,15 +38,16 @@ export default function Form() {
       teleOpCycles,
       penalties,
       notes,
+      title,
     };
     console.log(formData);
     const data = JSON.stringify(formData);
     console.log(data);
     try {
       const res = await fetch("/api/submit", {
-        // change to localhost for testing
         method: "POST",
         body: JSON.stringify(formData),
+        pathname,
         headers: {
           "content-type": "application/json",
         },
@@ -69,7 +72,7 @@ export default function Form() {
     <main className="h-screen flex items-center justify-center mx-auto sm:max-w-3xl md:max-w-5xl px-6 my-10">
       <form onSubmit={handleSubmit}>
         <h1 className="mt-4 font-bold text-black text-2xl text-center">
-          Greybacks FTC Scouting Form
+          {title} FTC Scouting Form
         </h1>
         <div className="mt-10 grid gap-x-8 gap-y-8 grid-cols-6">
           <div className="md:col-span-2 col-span-3">

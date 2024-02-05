@@ -8,6 +8,7 @@ export async function POST(req) {
   const data = await req.json();
   console.log(data);
 
+  const sheet = data.title;
   try {
     const auth = new google.auth.GoogleAuth({
       credentials: {
@@ -29,7 +30,7 @@ export async function POST(req) {
 
     const response = await sheets.spreadsheets.values.append({
       spreadsheetId: process.env.GOOGLE_SHEET_ID,
-      range: "Sheet1!A1:N1",
+      range: `${sheet}!A1:N1`,
       valueInputOption: "USER_ENTERED",
       requestBody: {
         values: [
