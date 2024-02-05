@@ -1,13 +1,12 @@
 import { NextResponse } from "next/server";
 import { google } from "googleapis";
 
-export async function POST(req, res) {
+export async function POST(req) {
   if (req.method !== "POST") {
     return NextResponse.json({ error: "POST ONLY" }, { status: 405 });
   }
-
-  const body = req.body;
-  console.log(body);
+  const data = await req.json();
+  console.log(data);
 
   try {
     const auth = new google.auth.GoogleAuth({
@@ -35,28 +34,28 @@ export async function POST(req, res) {
       requestBody: {
         values: [
           [
-            body.teamNumber,
-            body.teamName,
-            body.qualificationNumber,
-            body.allianceColour,
-            body.autonomousCycles,
-            body.autonomousPosition,
-            body.yellowPixel,
-            body.purplePixel,
-            body.teamProp,
-            body.drone,
-            body.climbTime,
-            body.teleopCycles,
-            body.penalties,
-            body.notes,
+            data.teamNumber,
+            data.teamName,
+            data.qualificationNumber,
+            data.allianceColour,
+            data.autonomousCycles,
+            data.autonomousPosition,
+            data.yellowPixel,
+            data.purplePixel,
+            data.teamProp,
+            data.drone,
+            data.climbTime,
+            data.teleopCycles,
+            data.penalties,
+            data.notes,
           ],
         ],
       },
     });
 
     return NextResponse.json({
-      data: response,
-      // response.data
+      values: response.config.data.values,
+      response: response,
     });
   } catch (e) {
     console.log(e);
