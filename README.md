@@ -1,11 +1,11 @@
 # FTC Scouting
 
-Scouting app for the 2023/2024 FTC season (CENTERSTAGE).
+Scouting App for the 2023/2024 FIRST Tech Challenge World Championship.
 
 ## Features
 
 - **Form UI** Responsive form for data input
-- **Data Storage:** All stats and relevant data is store on [Google Sheets](https://docs.google.com/spreadsheets/d/1kCz0u9UEARXdnpdwKXgGauxsrJtPLlLpxDtDvcWOLc8/edit#gid=0)
+- **Data Storage:** All stats and relevant data is store on [Google Sheets](https://docs.google.com/spreadsheets/d/1kCz0u9UEARXdnpdwKXgGauxsrJtPLlLpxDtDvcWOLc8)
 
 ## Tech Stack
 
@@ -27,20 +27,22 @@ Scouting app for the 2023/2024 FTC season (CENTERSTAGE).
    npm install
    ```
 
-3. Start the development server:
+3. Add the environment variables
+
+4. Start the development server:
 
    ```bash
    npm run dev
    ```
 
-4. Access the form at http://localhost:3000
-5. View the data using the [scouting spreadsheet](https://docs.google.com/spreadsheets/d/1kCz0u9UEARXdnpdwKXgGauxsrJtPLlLpxDtDvcWOLc8/edit#gid=0)
+5. Access the form at http://localhost:3000
+6. View the data using the [scouting spreadsheet](https://docs.google.com/spreadsheets/d/1kCz0u9UEARXdnpdwKXgGauxsrJtPLlLpxDtDvcWOLc8)
 
 ## Usage
 
-1. **Data Input:**: Start by entering relevant data for each metric
+1. **Data Input**: Start by entering relevant data for each metric
 2. **Form Submission**: Ensure all the entered data is accurate and complete, then submit the form
-3. **Data Analysis:**: Using Google Sheets, you can visualise and evaluate the stats accordingly
+3. **Data Analysis**: Using Google Sheets, you can visualise and evaluate the stats accordingly
 
 ## Contributors
 
