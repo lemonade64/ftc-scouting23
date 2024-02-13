@@ -14,13 +14,13 @@ export const metadata = {
     default: "FTC Scouting",
   },
   description:
-    "Scouting Tool for the 2023/2024 FIRST Tech Challenge World Championship.",
+    "Scouting App for the 2023/2024 FIRST Tech Challenge World Championship.",
   category: "technology",
   metadataBase: new URL("https://ftc-scouting.vercel.app/"),
   openGraph: {
     title: "FTC Scouting",
     description:
-      "Scouting Tool for the 2023/2024 FIRST Tech Challenge World Championship.",
+      "Scouting App for the 2023/2024 FIRST Tech Challenge World Championship.",
     url: "https://ftc-scouting.vercel.app/",
     siteName: "FTC Scouting",
     // images: [
@@ -28,7 +28,7 @@ export const metadata = {
     //     url: "https://ftc-scouting.vercel.app/opengraph-image.png",
     //     width: 800,
     //     height: 400,
-    //     alt: "Scouting Tool for the 2023/2024 FIRST Tech Challenge World Championship.",
+    //     alt: "Scouting App for the 2023/2024 FIRST Tech Challenge World Championship.",
     //   },
     // ],
     locale: "en_AU",
