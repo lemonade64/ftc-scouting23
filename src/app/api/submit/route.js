@@ -6,7 +6,7 @@ export async function POST(req) {
     return NextResponse.json({ error: "POST ONLY" }, { status: 405 });
   }
   const data = await req.json();
-  console.log(data);
+  console.info(data);
 
   const sheet = data.title;
   try {
@@ -59,7 +59,7 @@ export async function POST(req) {
       response: response,
     });
   } catch (e) {
-    console.log(e);
+    console.warn(e);
     return NextResponse.json(
       { error: "Internal Server Error" },
       { status: 500 }
