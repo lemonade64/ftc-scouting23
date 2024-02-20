@@ -23,14 +23,16 @@ export const metadata = {
       "Scouting App for the 2023/2024 FIRST Tech Challenge World Championship.",
     url: "https://ftc-scouting.vercel.app/",
     siteName: "FTC Scouting",
-    // images: [
-    //   {
-    //     url: "https://ftc-scouting.vercel.app/opengraph-image.png",
-    //     width: 800,
-    //     height: 400,
-    //     alt: "Scouting App for the 2023/2024 FIRST Tech Challenge World Championship.",
-    //   },
-    // ],
+    /*
+    images: [
+      {
+        url: "https://ftc-scouting.vercel.app/opengraph-image.png",
+        width: 800,
+        height: 400,
+        alt: "Scouting App for the 2023/2024 FIRST Tech Challenge World Championship.",
+      },
+    ],
+    */
     locale: "en_AU",
     type: "website",
   },
