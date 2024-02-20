@@ -1,3 +1,4 @@
+import { Analytics } from "@vercel/analytics/react";
 import { Poppins } from "next/font/google";
 import "./globals.css";
 
@@ -54,7 +55,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className="select-none sb-none">
-      <body className={poppins.className}>{children}</body>
+      <body className={poppins.className}>
+        {children}
+        <Analytics />
+      </body>
     </html>
   );
 }
