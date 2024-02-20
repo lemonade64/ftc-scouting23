@@ -61,14 +61,13 @@ async function getData(teamName) {
 //   }
 // }
 
-export default function teamData() {
+export default function TeamData() {
   let [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     function onkeydown(event) {
       (event.key === "k" && (event.metaKey || event.ctrlKey)) ||
-      event.key === "/" ||
-      (event.key === "Escape" && isOpen)
+      event.key === "/"
         ? setIsOpen(!isOpen)
         : null;
     }
@@ -80,12 +79,13 @@ export default function teamData() {
   }, [isOpen]);
 
   function closeModal() {
-    setIsOpen(true);
+    setIsOpen(false);
   }
 
   function openModal() {
     setIsOpen(true);
   }
+
   return (
     <>
       <button
@@ -95,8 +95,9 @@ export default function teamData() {
       >
         View Statistics
       </button>
-      <Transition appear show={isOpen} as={Fragment}>
-        <Dialog as="div" className="relative" onClose={closeModal}>
+
+      <Transition show={isOpen} as={Fragment}>
+        <Dialog as="div" className="relative z-10" onClose={closeModal}>
           <Transition.Child
             as={Fragment}
             enter="ease-out duration-300"
