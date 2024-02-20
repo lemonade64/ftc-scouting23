@@ -1,11 +1,13 @@
 "use client";
+
+import TeamData from "@/components/TeamData";
 import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 
 export default function Form() {
   const router = useRouter();
   const pathname = usePathname();
-  const title = pathname.slice(1).replace(/^\w/, (c) => c.toUpperCase());
+  const title = pathname.slice(1).replace(/^\w/, (e) => e.toUpperCase());
 
   const [teamNumber, setTeamNumber] = useState("");
   const [teamName, setTeamName] = useState("");
@@ -22,8 +24,11 @@ export default function Form() {
   const [penalties, setPenalties] = useState("");
   const [notes, setNotes] = useState("");
 
+  const [buttonState, setButton] = useState(false);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setButton(true);
     const formData = {
       teamNumber,
       teamName,
@@ -40,9 +45,9 @@ export default function Form() {
       notes,
       title,
     };
-    console.log(formData);
+    console.info(formData);
     const data = JSON.stringify(formData);
-    console.log(data);
+    console.info(data);
     try {
       const res = await fetch("/api/submit", {
         method: "POST",
@@ -52,25 +57,25 @@ export default function Form() {
           "content-type": "application/json",
         },
       });
-      console.log(res);
+      console.info(res);
 
       if (res.ok) {
-        console.log("Success: " + res.statusText);
-        console.log("Form Submitted!");
+        console.info("Success: " + res.statusText);
+        console.info("Form Submitted!");
       } else {
-        console.log("Failure: " + res.statusText);
+        console.warn("Failure: " + res.statusText);
         throw new Error("HTTP " + res.status);
       }
     } catch (e) {
-      console.log("Failure: ", e);
+      console.warn("Failure: ", e);
     }
 
     router.push("/thank-you");
   };
 
   return (
-    <main className="h-screen flex items-center justify-center mx-auto sm:max-w-3xl md:max-w-5xl px-6 my-10">
-      <form onSubmit={handleSubmit}>
+    <main className="h-screen flex items-center justify-center mx-auto sm:max-w-3xl md:max-w-7xl px-6">
+      <form onSubmit={handleSubmit} className="py-14">
         <h1 className="mt-4 font-bold text-black text-2xl text-center">
           {title} FTC Scouting Form
         </h1>
@@ -196,7 +201,7 @@ export default function Form() {
             </div>
           </div>
 
-          <label className="block text-sm font-medium text-black md:col-span-4 col-span-6 max-[768px]:row-span-1 text-center">
+          <div className="block text-sm font-medium text-black md:col-span-4 col-span-6 max-[768px]:row-span-1 text-center">
             Auto Spike Mark
             <div className="mt-4">
               <div className="grid grid-cols-3 gap-x-2 items-center">
@@ -244,7 +249,7 @@ export default function Form() {
                 </label>
               </div>
             </div>
-          </label>
+          </div>
           <div className="md:col-span-2 col-span-3">
             <label
               htmlFor="drone"
@@ -346,16 +351,23 @@ export default function Form() {
             </div>
           </div>
         </div>
-        <div className="mt-6 flex items-center justify-end gap-x-6">
-          <button type="reset" className="text-sm font-semibold text-black">
-            Reset
-          </button>
-          <button
-            type="submit"
-            className="rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm"
-          >
-            Submit
-          </button>
+        <div className="mt-6 flex items-center justify-between">
+          <TeamData className="justify-start" />
+          <div>
+            <button
+              type="reset"
+              className="text-sm font-semibold text-black mr-6"
+            >
+              Reset
+            </button>
+            <button
+              type="submit"
+              disabled={buttonState}
+              className="rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm"
+            >
+              {buttonState ? "Submitting..." : "Submit"}
+            </button>
+          </div>
         </div>
       </form>
     </main>
