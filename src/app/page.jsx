@@ -4,7 +4,9 @@ export default function Home() {
   return (
     <main className="grid h-screen place-items-center px-6 py-12 sm:py-32">
       <div className="text-center">
-        <h1 className="mt-4 font-bold text-black text-5xl">Choose a Team</h1>
+        <h1 className="mt-4 font-bold text-black dark:text-white text-5xl">
+          Choose a Team
+        </h1>
         <div className="mt-10 flex items-center justify-center gap-x-6">
           <Link
             href={"/greybacks"}

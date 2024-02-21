@@ -10,7 +10,7 @@ async function getOPR(teamKey) {
       `https://api.ftcscout.org/rest/v1/teams/${teamKey}/quick-stats?season=2023`,
       {
         method: "GET",
-      },
+      }
     );
     if (res.ok) {
       console.info("Success: " + res.statusText);
@@ -68,8 +68,7 @@ export default function Statistics() {
 
   useEffect(() => {
     function onkeydown(e) {
-      (e.key === "k" && (e.metaKey || e.ctrlKey)) ||
-      e.key === "/"
+      (e.key === "k" && (e.metaKey || e.ctrlKey)) || e.key === "/"
         ? setIsOpen(!isOpen)
         : null;
     }
@@ -93,7 +92,7 @@ export default function Statistics() {
       <button
         type="button"
         onClick={openModal}
-        className="text-sm font-semibold text-black"
+        className="text-sm font-semibold text-black dark:text-white"
       >
         View Statistics
       </button>
@@ -109,7 +108,7 @@ export default function Statistics() {
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <div className="fixed inset-0 bg-black/25 backdrop-blur-sm" />
+            <div className="fixed inset-0 bg-black/25 dark:bg-white/20 backdrop-blur-md" />
           </Transition.Child>
 
           <div className="fixed inset-0 overflow-y-auto">
@@ -123,7 +122,7 @@ export default function Statistics() {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="transform overflow-hidden rounded-2xl bg-white m-6 align-middle shadow-xl transition-all mx-auto max-w-6xl">
+                <Dialog.Panel className="transform overflow-hidden rounded-2xl bg-white dark:bg-black m-6 align-middle shadow-xl transition-all mx-auto max-w-6xl">
                   <StatisticsSkeleton />
                 </Dialog.Panel>
               </Transition.Child>

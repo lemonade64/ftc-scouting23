@@ -1,3 +1,4 @@
+import ToggleMode from "@/components/ToggleMode";
 import { Analytics } from "@vercel/analytics/react";
 import { Poppins } from "next/font/google";
 import "./globals.css";
@@ -54,10 +55,11 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className="select-none sb-none">
-      <body className={poppins.className}>
+    <html lang="en" className={poppins.className}>
+      <body className="select-none sb-none dark:bg-black">
         {children}
         <Analytics />
+        <ToggleMode />
       </body>
     </html>
   );
