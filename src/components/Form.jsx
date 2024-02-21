@@ -355,10 +355,12 @@ export default function Form() {
             <div>
               <button
                 type="reset"
+                onClick={() => location.reload()}
                 className="text-sm font-semibold text-black mr-6 dark:text-white"
               >
                 Reset
               </button>
+
               <button
                 type="submit"
                 disabled={buttonState}
