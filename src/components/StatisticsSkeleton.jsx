@@ -4,7 +4,7 @@ import { Disclosure } from "@headlessui/react";
 import { ChevronUpIcon } from "@heroicons/react/20/solid";
 import disclosure from "@/data/disclosure";
 
-export default function Loading() {
+export default function StatisticsSkeleton() {
   return (
     <div className="p-10">
       <div className="animate-pulse px-4 sm:px-0">

@@ -1,7 +1,7 @@
 "use client";
 
 import { Fragment, useEffect, useState } from "react";
-import Loading from "@/components/Loading";
+import StatisticsSkeleton from "@/components/StatisticsSkeleton";
 import { Dialog, Transition } from "@headlessui/react";
 
 async function getOPR(teamKey) {
@@ -10,7 +10,7 @@ async function getOPR(teamKey) {
       `https://api.ftcscout.org/rest/v1/teams/${teamKey}/quick-stats?season=2023`,
       {
         method: "GET",
-      }
+      },
     );
     if (res.ok) {
       console.info("Success: " + res.statusText);
@@ -35,44 +35,46 @@ async function getData(teamName) {
   console.info(totalOPR, autoOPR, teleOpORP, endgameOPR);
 }
 
-// async function getMatchDetails(teamKey) {
-//   try {
-//     const res = await fetch(
-//       `https://theorangealliance.org/api/team/${teamKey}/matches/2324`,
-//       {
-//         method: "GET",
-//         headers: {
-//           "content-type": "application/json",
-//           "X-TOA-Key": process.env.ORANGE_ALLIANCE_KEY,
-//           "X-Application-Origin": "FTC Scouting",
-//         },
-//       }
-//     );
-//     if (res.ok) {
-//       console.info("Success: " + res.statusText);
-//       console.info("Received Match Details");
-//     } else {
-//       console.warn("Failure: " + res.statusText);
-//       throw new Error("HTTP " + res.status);
-//     }
-//     return await res.json();
-//   } catch (e) {
-//     console.warn("Failure: ", e);
-//   }
-// }
+/*
+async function getMatchDetails(teamKey) {
+  try {
+    const res = await fetch(
+      `https://theorangealliance.org/api/team/${teamKey}/matches/2324`,
+      {
+        method: "GET",
+        headers: {
+          "content-type": "application/json",
+          "X-TOA-Key": process.env.ORANGE_ALLIANCE_KEY,
+          "X-Application-Origin": "FTC Scouting",
+        },
+      }
+    );
+    if (res.ok) {
+      console.info("Success: " + res.statusText);
+      console.info("Received Match Details");
+    } else {
+      console.warn("Failure: " + res.statusText);
+      throw new Error("HTTP " + res.status);
+    }
+    return await res.json();
+  } catch (e) {
+    console.warn("Failure: ", e);
+  }
+}
+*/
 
-export default function TeamData() {
-  let [isOpen, setIsOpen] = useState(false);
+export default function Statistics() {
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    function onkeydown(event) {
-      (event.key === "k" && (event.metaKey || event.ctrlKey)) ||
-      event.key === "/"
+    function onkeydown(e) {
+      (e.key === "k" && (e.metaKey || e.ctrlKey)) ||
+      e.key === "/"
         ? setIsOpen(!isOpen)
         : null;
     }
 
-    window.addEventListener(`keydown`, onkeydown);
+    window.addEventListener("keydown", onkeydown);
     return () => {
       window.removeEventListener("keydown", onkeydown);
     };
@@ -122,7 +124,7 @@ export default function TeamData() {
                 leaveTo="opacity-0 scale-95"
               >
                 <Dialog.Panel className="transform overflow-hidden rounded-2xl bg-white m-6 align-middle shadow-xl transition-all mx-auto max-w-6xl">
-                  <Loading />
+                  <StatisticsSkeleton />
                 </Dialog.Panel>
               </Transition.Child>
             </div>
