@@ -1,6 +1,6 @@
 "use client";
 
-import Statistics from "@/components/Statistics";
+import StatisticsModal from "@/components/StatisticsModal";
 import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -351,7 +351,7 @@ export default function Form() {
             </div>
           </div>
           <div className="flex items-center justify-between col-span-6">
-            <Statistics className="justify-start" />
+            <StatisticsModal className="justify-start" />
             <div>
               <button
                 type="reset"

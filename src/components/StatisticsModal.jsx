@@ -1,69 +1,11 @@
 "use client";
 
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, Suspense, useEffect, useState } from "react";
+import StatisticsList from "@/components/StatisticsList";
 import StatisticsSkeleton from "@/components/StatisticsSkeleton";
 import { Dialog, Transition } from "@headlessui/react";
 
-async function getOPR(teamKey) {
-  try {
-    const res = await fetch(
-      `https://api.ftcscout.org/rest/v1/teams/${teamKey}/quick-stats?season=2023`,
-      {
-        method: "GET",
-      }
-    );
-    if (res.ok) {
-      console.info("Success: " + res.statusText);
-      console.info("Received OPR");
-    } else {
-      console.warn("Failure: " + res.statusText);
-      throw new Error("HTTP " + res.status);
-    }
-    const data = await res.json();
-    return data;
-  } catch (e) {
-    console.warn("Failure: ", e);
-  }
-}
-
-async function getData(teamName) {
-  const npOPR = await getOPR(teamName);
-  const totalOPR = Math.round(npOPR.tot.value);
-  const autoOPR = Math.round(npOPR.auto.value);
-  const teleOpORP = Math.round(npOPR.dc.value);
-  const endgameOPR = Math.round(npOPR.eg.value);
-  console.info(totalOPR, autoOPR, teleOpORP, endgameOPR);
-}
-
-/*
-async function getMatchDetails(teamKey) {
-  try {
-    const res = await fetch(
-      `https://theorangealliance.org/api/team/${teamKey}/matches/2324`,
-      {
-        method: "GET",
-        headers: {
-          "content-type": "application/json",
-          "X-TOA-Key": process.env.ORANGE_ALLIANCE_KEY,
-          "X-Application-Origin": "FTC Scouting",
-        },
-      }
-    );
-    if (res.ok) {
-      console.info("Success: " + res.statusText);
-      console.info("Received Match Details");
-    } else {
-      console.warn("Failure: " + res.statusText);
-      throw new Error("HTTP " + res.status);
-    }
-    return await res.json();
-  } catch (e) {
-    console.warn("Failure: ", e);
-  }
-}
-*/
-
-export default function Statistics() {
+export default function StatisticsModal() {
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
@@ -123,7 +65,9 @@ export default function Statistics() {
                 leaveTo="opacity-0 scale-95"
               >
                 <Dialog.Panel className="transform overflow-hidden rounded-2xl bg-white dark:bg-black m-6 align-middle shadow-xl transition-all mx-auto max-w-6xl">
-                  <StatisticsSkeleton />
+                  <Suspense fallback={<StatisticsSkeleton />}>
+                    <StatisticsList />
+                  </Suspense>
                 </Dialog.Panel>
               </Transition.Child>
             </div>
