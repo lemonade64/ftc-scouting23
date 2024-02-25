@@ -68,15 +68,17 @@ async function getMatchDetails(matchKey) {
   }
 }
 
+/*
 async function getDataAverage(teamName) {
-  // const teamMatches = await getTeamMatches(teamName);
-  // return await getTeamMatches(teamName);
-  // const teamMatchesMap = new Map();
-  // for (const [key, value] of Object.entries(await teamMatches)) {
-  //   teamMatchesMap.set(key, value);
-  // }
-  // return teamMatchesMap;
+  const teamMatches = await getTeamMatches(teamName);
+  return await getTeamMatches(teamName);
+  const teamMatchesMap = new Map();
+  for (const [key, value] of Object.entries(await teamMatches)) {
+    teamMatchesMap.set(key, value);
+  }
+  return teamMatchesMap;
 }
+*/
 
 async function getData(teamName) {
   const npOPR = await getOPR(teamName);
