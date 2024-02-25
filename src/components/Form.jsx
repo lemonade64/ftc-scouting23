@@ -1,5 +1,6 @@
 "use client";
 
+import InputWrapper from "@/components/InputWrapper";
 import StatisticsModal from "@/components/StatisticsModal";
 import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
@@ -26,7 +27,7 @@ export default function Form() {
 
   const [buttonState, setButton] = useState(false);
 
-  const handleSubmit = async (e) => {
+  async function handleSubmit(e) {
     e.preventDefault();
     setButton(true);
     const formData = {
@@ -60,18 +61,17 @@ export default function Form() {
       console.info(res);
 
       if (res.ok) {
-        console.info("Success: " + res.statusText);
         console.info("Form Submitted!");
       } else {
-        console.warn("Failure: " + res.statusText);
+        console.error("Failure: " + res.statusText);
         throw new Error("HTTP " + res.status);
       }
     } catch (e) {
-      console.warn("Failure: ", e);
+      console.error("Failure: ", e);
     }
 
     router.push("/thank-you");
-  };
+  }
 
   return (
     <main className="mx-auto sm:max-w-3xl md:max-w-5xl px-6">
@@ -80,126 +80,79 @@ export default function Form() {
           {title} FTC Scouting Form
         </h1>
         <div className="mt-10 grid gap-x-8 gap-y-8 grid-cols-6">
-          <div className="md:col-span-2 col-span-3">
-            <label
-              htmlFor="teamNumber"
-              className="block text-sm font-medium text-black text-center dark:text-white"
-            >
-              Team Number
-            </label>
-            <div className="mt-2">
-              <input
-                autoComplete="off"
-                type="text"
-                name="teamNumber"
-                id="teamNumber"
-                value={teamNumber}
-                onChange={(e) => setTeamNumber(e.target.value)}
-                className="block w-full rounded-md border-1 border-gray-300 focus:border-black py-1.5 text-black shadow-sm placeholder:text-gray-400 text-sm focus:ring-0 dark:border-[#797979] dark:focus:border-white dark:placeholder:text-[#b4aa9c] dark:text-white dark:bg-black dark:shadow-[0_1px_2px_0px_rgba(225,225,225,0.5)]"
-              />
-            </div>
-          </div>
+          <InputWrapper value="teamNumber" name="Team Number">
+            <input
+              autoComplete="off"
+              type="text"
+              name="teamNumber"
+              id="teamNumber"
+              value={teamNumber}
+              onChange={(e) => setTeamNumber(e.target.value)}
+              className="block w-full rounded-md border-1 border-gray-300 focus:border-black py-1.5 text-black shadow-sm placeholder:text-gray-400 text-sm focus:ring-0 dark:border-[#797979] dark:focus:border-white dark:placeholder:text-[#b4aa9c] dark:text-white dark:bg-black dark:shadow-[0_1px_2px_0px_rgba(225,225,225,0.5)]"
+            />
+          </InputWrapper>
 
-          <div className="md:col-span-2 col-span-3">
-            <label
-              htmlFor="teamName"
-              className="block text-sm font-medium text-black text-center dark:text-white"
-            >
-              Team Name
-            </label>
-            <div className="mt-2">
-              <input
-                autoComplete="off"
-                type="text"
-                name="teamName"
-                id="teamName"
-                value={teamName}
-                onChange={(e) => setTeamName(e.target.value)}
-                className="block w-full rounded-md border-1 border-gray-300 focus:border-black py-1.5 text-black shadow-sm placeholder:text-gray-400 text-sm focus:ring-0 dark:border-[#797979] dark:focus:border-white dark:placeholder:text-[#b4aa9c] dark:text-white dark:bg-black dark:shadow-[0_1px_2px_0px_rgba(225,225,225,0.5)]"
-              />
-            </div>
-          </div>
+          <InputWrapper value="teamName" name="Team Name">
+            <input
+              autoComplete="off"
+              type="text"
+              name="teamName"
+              id="teamName"
+              value={teamName}
+              onChange={(e) => setTeamName(e.target.value)}
+              className="block w-full rounded-md border-1 border-gray-300 focus:border-black py-1.5 text-black shadow-sm placeholder:text-gray-400 text-sm focus:ring-0 dark:border-[#797979] dark:focus:border-white dark:placeholder:text-[#b4aa9c] dark:text-white dark:bg-black dark:shadow-[0_1px_2px_0px_rgba(225,225,225,0.5)]"
+            />
+          </InputWrapper>
 
-          <div className="md:col-span-2 col-span-3">
-            <label
-              htmlFor="qualificationNumber"
-              className="block text-sm font-medium text-black text-center dark:text-white"
-            >
-              Qualification
-            </label>
-            <div className="mt-2">
-              <input
-                autoComplete="off"
-                type="text"
-                name="qualificationNumber"
-                id="qualificationNumber"
-                value={qualificationNumber}
-                onChange={(e) => setQualificationNumber(e.target.value)}
-                className="block w-full rounded-md border-1 border-gray-300 focus:border-black py-1.5 text-black shadow-sm placeholder:text-gray-400 text-sm focus:ring-0 dark:border-[#797979] dark:focus:border-white dark:placeholder:text-[#b4aa9c] dark:text-white dark:bg-black dark:shadow-[0_1px_2px_0px_rgba(225,225,225,0.5)]"
-              />
-            </div>
-          </div>
+          <InputWrapper value="qualificationNumber" name="Qualification Number">
+            <input
+              autoComplete="off"
+              type="text"
+              name="qualificationNumber"
+              id="qualificationNumber"
+              value={qualificationNumber}
+              onChange={(e) => setQualificationNumber(e.target.value)}
+              className="block w-full rounded-md border-1 border-gray-300 focus:border-black py-1.5 text-black shadow-sm placeholder:text-gray-400 text-sm focus:ring-0 dark:border-[#797979] dark:focus:border-white dark:placeholder:text-[#b4aa9c] dark:text-white dark:bg-black dark:shadow-[0_1px_2px_0px_rgba(225,225,225,0.5)]"
+            />
+          </InputWrapper>
 
-          <div className="md:col-span-2 col-span-3">
-            <label
-              htmlFor="allianceColour"
-              className="block text-sm font-medium text-black text-center dark:text-white"
+          <InputWrapper value="allianceColour" name="Alliance Colour">
+            <select
+              name="allianceColour"
+              id="allianceColour"
+              value={allianceColour}
+              onChange={(e) => setAllianceColour(e.target.value)}
+              className="block w-full rounded-md border-1 border-gray-300 focus:border-black py-1.5 text-black shadow-sm placeholder:text-gray-400 text-sm focus:ring-0 dark:border-[#797979] dark:focus:border-white dark:placeholder:text-[#b4aa9c] dark:text-white dark:bg-black dark:shadow-[0_1px_2px_0px_rgba(225,225,225,0.5)]"
             >
-              Alliance Colour
-            </label>
-            <div className="mt-2">
-              <select
-                name="allianceColour"
-                id="allianceColour"
-                value={allianceColour}
-                onChange={(e) => setAllianceColour(e.target.value)}
-                className="block w-full rounded-md border-1 border-gray-300 focus:border-black py-1.5 text-black shadow-sm placeholder:text-gray-400 text-sm focus:ring-0 dark:border-[#797979] dark:focus:border-white dark:placeholder:text-[#b4aa9c] dark:text-white dark:bg-black dark:shadow-[0_1px_2px_0px_rgba(225,225,225,0.5)]"
-              >
-                <option>Blue</option>
-                <option>Red</option>
-              </select>
-            </div>
-          </div>
+              <option>Blue</option>
+              <option>Red</option>
+            </select>
+          </InputWrapper>
 
-          <div className="md:col-span-2 col-span-3">
-            <label
-              htmlFor="autonomousCycles"
-              className="block text-sm font-medium text-black text-center dark:text-white"
+          <InputWrapper value="autonomousCycles" name="Autonomous Cycles">
+            <input
+              autoComplete="off"
+              type="text"
+              name="autonomousCycles"
+              id="autonomousCycles"
+              value={autonomousCycles}
+              onChange={(e) => setAutonomousCycles(e.target.value)}
+              className="block w-full rounded-md border-1 border-gray-300 focus:border-black py-1.5 text-black shadow-sm placeholder:text-gray-400 text-sm focus:ring-0 dark:border-[#797979] dark:focus:border-white dark:placeholder:text-[#b4aa9c] dark:text-white dark:bg-black dark:shadow-[0_1px_2px_0px_rgba(225,225,225,0.5)]"
+            />
+          </InputWrapper>
+
+          <InputWrapper value="autonomousPosition" name="Auto Position">
+            <select
+              name="autonomousPosition"
+              id="autonomousPosition"
+              value={autonomousPosition}
+              onChange={(e) => setautonomousPosition(e.target.value)}
+              className="block w-full rounded-md border-1 border-gray-300 focus:border-black py-1.5 text-black shadow-sm placeholder:text-gray-400 text-sm focus:ring-0 dark:border-[#797979] dark:focus:border-white dark:placeholder:text-[#b4aa9c] dark:text-white dark:bg-black dark:shadow-[0_1px_2px_0px_rgba(225,225,225,0.5)]"
             >
-              Auto Cycles
-            </label>
-            <div className="mt-2">
-              <input
-                autoComplete="off"
-                type="text"
-                name="autonomousCycles"
-                id="autonomousCycles"
-                value={autonomousCycles}
-                onChange={(e) => setAutonomousCycles(e.target.value)}
-                className="block w-full rounded-md border-1 border-gray-300 focus:border-black py-1.5 text-black shadow-sm placeholder:text-gray-400 text-sm focus:ring-0 dark:border-[#797979] dark:focus:border-white dark:placeholder:text-[#b4aa9c] dark:text-white dark:bg-black dark:shadow-[0_1px_2px_0px_rgba(225,225,225,0.5)]"
-              />
-            </div>
-          </div>
-          <div className="md:col-span-2 col-span-3">
-            <label
-              htmlFor="autonomousPosition"
-              className="block text-sm font-medium text-black text-center dark:text-white"
-            >
-              Auto Position
-            </label>
-            <div className="mt-2">
-              <select
-                name="autonomousPosition"
-                id="autonomousPosition"
-                value={autonomousPosition}
-                onChange={(e) => setautonomousPosition(e.target.value)}
-                className="block w-full rounded-md border-1 border-gray-300 focus:border-black py-1.5 text-black shadow-sm placeholder:text-gray-400 text-sm focus:ring-0 dark:border-[#797979] dark:focus:border-white dark:placeholder:text-[#b4aa9c] dark:text-white dark:bg-black dark:shadow-[0_1px_2px_0px_rgba(225,225,225,0.5)]"
-              >
-                <option>Audience</option>
-                <option>Backboard</option>
-              </select>
-            </div>
-          </div>
+              <option>Audience</option>
+              <option>Backboard</option>
+            </select>
+          </InputWrapper>
 
           <div className="block text-sm font-medium text-black md:col-span-4 col-span-6 max-[768px]:row-span-1 text-center dark:text-white">
             Auto Spike Mark
@@ -250,86 +203,58 @@ export default function Form() {
               </div>
             </div>
           </div>
-          <div className="md:col-span-2 col-span-3">
-            <label
-              htmlFor="drone"
-              className="block text-sm font-medium text-black text-center dark:text-white"
-            >
-              Drone
-            </label>
-            <div className="mt-2">
-              <select
-                name="drone"
-                id="drone"
-                value={drone}
-                onChange={(e) => setDrone(e.target.value)}
-                className="block w-full rounded-md border-1 border-gray-300 focus:border-black py-1.5 text-black shadow-sm placeholder:text-gray-400 text-sm focus:ring-0 dark:border-[#797979] dark:focus:border-white dark:placeholder:text-[#b4aa9c] dark:text-white dark:bg-black dark:shadow-[0_1px_2px_0px_rgba(225,225,225,0.5)]"
-              >
-                <option>N/A (+0 Points)</option>
-                <option>Zone 1 (+30 Points)</option>
-                <option>Zone 2 (+20 Points)</option>
-                <option>Zone 3 (+10 Points)</option>
-              </select>
-            </div>
-          </div>
 
-          <div className="md:col-span-2 col-span-3">
-            <label
-              htmlFor="climbTime"
-              className="block text-sm font-medium text-black text-center dark:text-white"
+          <InputWrapper value="drone" name="Drone">
+            <select
+              name="drone"
+              id="drone"
+              value={drone}
+              onChange={(e) => setDrone(e.target.value)}
+              className="block w-full rounded-md border-1 border-gray-300 focus:border-black py-1.5 text-black shadow-sm placeholder:text-gray-400 text-sm focus:ring-0 dark:border-[#797979] dark:focus:border-white dark:placeholder:text-[#b4aa9c] dark:text-white dark:bg-black dark:shadow-[0_1px_2px_0px_rgba(225,225,225,0.5)]"
             >
-              Climb Time
-            </label>
-            <div className="mt-2">
-              <input
-                autoComplete="off"
-                type="text"
-                name="climbTime"
-                id="climbTime"
-                value={climbTime}
-                onChange={(e) => setClimbTime(e.target.value)}
-                className="block w-full rounded-md border-1 border-gray-300 focus:border-black py-1.5 text-black shadow-sm placeholder:text-gray-400 text-sm focus:ring-0 dark:border-[#797979] dark:focus:border-white dark:placeholder:text-[#b4aa9c] dark:text-white dark:bg-black dark:shadow-[0_1px_2px_0px_rgba(225,225,225,0.5)]"
-              />
-            </div>
-          </div>
-          <div className="md:col-span-2 col-span-3">
-            <label
-              htmlFor="teleOpCycles"
-              className="block text-sm font-medium text-black text-center dark:text-white"
-            >
-              TeleOp Cycles
-            </label>
-            <div className="mt-2">
-              <input
-                autoComplete="off"
-                type="text"
-                name="teleOpCycles"
-                id="teleOpCycles"
-                value={teleOpCycles}
-                onChange={(e) => setTeleOpCycles(e.target.value)}
-                className="block w-full rounded-md border-1 border-gray-300 focus:border-black py-1.5 text-black shadow-sm placeholder:text-gray-400 text-sm focus:ring-0 dark:border-[#797979] dark:focus:border-white dark:placeholder:text-[#b4aa9c] dark:text-white dark:bg-black dark:shadow-[0_1px_2px_0px_rgba(225,225,225,0.5)]"
-              />
-            </div>
-          </div>
-          <div className="md:col-span-2 col-span-3">
-            <label
-              htmlFor="penalties"
-              className="block text-sm font-medium text-black text-center dark:text-white"
-            >
-              Penalties
-            </label>
-            <div className="mt-2">
-              <input
-                autoComplete="off"
-                type="text"
-                name="penalties"
-                id="penalties"
-                value={penalties}
-                onChange={(e) => setPenalties(e.target.value)}
-                className="block w-full rounded-md border-1 border-gray-300 focus:border-black py-1.5 text-black shadow-sm placeholder:text-gray-400 text-sm focus:ring-0 dark:border-[#797979] dark:focus:border-white dark:placeholder:text-[#b4aa9c] dark:text-white dark:bg-black dark:shadow-[0_1px_2px_0px_rgba(225,225,225,0.5)]"
-              />
-            </div>
-          </div>
+              <option>N/A (+0 Points)</option>
+              <option>Zone 1 (+30 Points)</option>
+              <option>Zone 2 (+20 Points)</option>
+              <option>Zone 3 (+10 Points)</option>
+            </select>
+          </InputWrapper>
+
+          <InputWrapper value="climbTime" name="Climb Time">
+            <input
+              autoComplete="off"
+              type="text"
+              name="climbTime"
+              id="climbTime"
+              value={climbTime}
+              onChange={(e) => setClimbTime(e.target.value)}
+              className="block w-full rounded-md border-1 border-gray-300 focus:border-black py-1.5 text-black shadow-sm placeholder:text-gray-400 text-sm focus:ring-0 dark:border-[#797979] dark:focus:border-white dark:placeholder:text-[#b4aa9c] dark:text-white dark:bg-black dark:shadow-[0_1px_2px_0px_rgba(225,225,225,0.5)]"
+            />
+          </InputWrapper>
+
+          <InputWrapper value="teleOpCycles" name="TeleOp Cycles">
+            <input
+              autoComplete="off"
+              type="text"
+              name="teleOpCycles"
+              id="teleOpCycles"
+              value={teleOpCycles}
+              onChange={(e) => setTeleOpCycles(e.target.value)}
+              className="block w-full rounded-md border-1 border-gray-300 focus:border-black py-1.5 text-black shadow-sm placeholder:text-gray-400 text-sm focus:ring-0 dark:border-[#797979] dark:focus:border-white dark:placeholder:text-[#b4aa9c] dark:text-white dark:bg-black dark:shadow-[0_1px_2px_0px_rgba(225,225,225,0.5)]"
+            />
+          </InputWrapper>
+
+          <InputWrapper value="penalties" name="penalties">
+            <input
+              autoComplete="off"
+              type="text"
+              name="penalties"
+              id="penalties"
+              value={penalties}
+              onChange={(e) => setPenalties(e.target.value)}
+              className="block w-full rounded-md border-1 border-gray-300 focus:border-black py-1.5 text-black shadow-sm placeholder:text-gray-400 text-sm focus:ring-0 dark:border-[#797979] dark:focus:border-white dark:placeholder:text-[#b4aa9c] dark:text-white dark:bg-black dark:shadow-[0_1px_2px_0px_rgba(225,225,225,0.5)]"
+            />
+          </InputWrapper>
+
           <div className="col-span-6 md:row-span-1 pt-6 border-t-[1px] border-gray-300">
             <label
               htmlFor="notes"
@@ -350,6 +275,7 @@ export default function Form() {
               />
             </div>
           </div>
+
           <div className="flex items-center justify-between col-span-6">
             <StatisticsModal className="justify-start" />
             <div>
@@ -364,7 +290,9 @@ export default function Form() {
               <button
                 type="submit"
                 disabled={buttonState}
-                className="inline-flex rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm dark:bg-white dark:text-black"
+                className={`inline-flex rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm dark:bg-white dark:text-black ${
+                  buttonState ? "opacity-70" : ""
+                }`}
               >
                 <svg
                   className={`animate-spin -ml-1 mr-3 h-5 w-5 text-white ${
