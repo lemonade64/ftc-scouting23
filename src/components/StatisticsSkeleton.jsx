@@ -1,5 +1,3 @@
-"use client";
-
 import { Disclosure } from "@headlessui/react";
 import { ChevronUpIcon } from "@heroicons/react/20/solid";
 
@@ -29,7 +27,7 @@ export default function StatisticsSkeleton() {
           name: "Mosaics",
           value: "222",
         },
-        { id: 2, name: "Set Name", value: "333" },
+        { id: 2, name: "Set Line", value: "333" },
         { id: 3, name: "Penalties", value: "444" },
         { id: 4, name: "Total Points", value: "555" },
       ],
@@ -52,7 +50,7 @@ export default function StatisticsSkeleton() {
   return (
     <div>
       <div className="p-10">
-        <div className="px-2 sm:px-0">
+        <div className="px-2 sm:px-0 animate-pulse">
           <h1 className="rounded-full bg-slate-700 dark:bg-slate-400 h-4 text-transparent w-fit my-4">
             Team Data
           </h1>

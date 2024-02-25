@@ -1,5 +1,3 @@
-"use client";
-
 import { Disclosure } from "@headlessui/react";
 import { ChevronUpIcon } from "@heroicons/react/20/solid";
 
@@ -12,17 +10,72 @@ async function getOPR(teamKey) {
       }
     );
     if (res.ok) {
-      console.info("Success: " + res.statusText);
       console.info("Received OPR");
     } else {
-      console.warn("Failure: " + res.statusText);
+      console.error("Failure: " + res.statusText);
       throw new Error("HTTP " + res.status);
     }
-    const data = await res.json();
-    return data;
+    return await res.json();
   } catch (e) {
-    console.warn("Failure: ", e);
+    console.error("Failure: ", e);
   }
+}
+
+async function getTeamMatches(teamKey) {
+  try {
+    const res = await fetch(
+      `https://theorangealliance.org/api/team/${teamKey}/matches/2324`,
+      {
+        method: "GET",
+        headers: {
+          "X-TOA-Key": process.env.ORANGE_ALLIANCE_KEY,
+          "X-Application-Origin": process.env.ORANGE_ALLIANCE_APP_ORIGIN,
+        },
+      }
+    );
+    if (res.ok) {
+      console.info("Received Team Matches");
+    } else {
+      throw new Error("HTTP " + res.status);
+    }
+    return await res.json();
+  } catch (e) {
+    console.error("Failure: ", e);
+  }
+}
+
+async function getMatchDetails(matchKey) {
+  try {
+    const res = await fetch(
+      `https://theorangealliance.org/api/match/${matchKey}/details`,
+      {
+        method: "GET",
+        headers: {
+          "X-TOA-Key": process.env.ORANGE_ALLIANCE_KEY,
+          "X-Application-Origin": "FTC Scouting",
+        },
+      }
+    );
+    if (res.ok) {
+      console.info("Received Match Details");
+    } else {
+      console.error("Failure: " + res.statusText);
+      throw new Error("HTTP " + res.status);
+    }
+    return await res.json();
+  } catch (e) {
+    console.error("Failure: ", e);
+  }
+}
+
+async function getDataAverage(teamName) {
+  // const teamMatches = await getTeamMatches(teamName);
+  // return await getTeamMatches(teamName);
+  // const teamMatchesMap = new Map();
+  // for (const [key, value] of Object.entries(await teamMatches)) {
+  //   teamMatchesMap.set(key, value);
+  // }
+  // return teamMatchesMap;
 }
 
 async function getData(teamName) {
@@ -95,36 +148,9 @@ async function getData(teamName) {
   return statistics;
 }
 
-/*
-  async function getMatchDetails(teamKey) {
-    try {
-      const res = await fetch(
-        `https://theorangealliance.org/api/team/${teamKey}/matches/2324`,
-        {
-          method: "GET",
-          headers: {
-            "content-type": "application/json",
-            "X-TOA-Key": process.env.ORANGE_ALLIANCE_KEY,
-            "X-Application-Origin": "FTC Scouting",
-          },
-        }
-      );
-      if (res.ok) {
-        console.info("Success: " + res.statusText);
-        console.info("Received Match Details");
-      } else {
-        console.warn("Failure: " + res.statusText);
-        throw new Error("HTTP " + res.status);
-      }
-      return await res.json();
-    } catch (e) {
-      console.warn("Failure: ", e);
-    }
-  }
-  */
-
 export default async function StatisticsList() {
-  const statistics = await getData(11148);
+  const teamNumber = 11148;
+  const statistics = await getData(teamNumber);
 
   console.log(statistics);
 
@@ -143,7 +169,7 @@ export default async function StatisticsList() {
               Team Number:
             </dt>
             <dd className="mt-1 leading-6 sm:col-span-2 sm:mt-0 text-md w-fit">
-              {/* {teamNumber} from Query */}
+              {teamNumber}
             </dd>
           </div>
           {statistics.map(({ id, name, value, dataSet }) => (
