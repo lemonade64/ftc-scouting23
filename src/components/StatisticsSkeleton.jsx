@@ -48,7 +48,7 @@ export default function StatisticsSkeleton() {
   ];
 
   return (
-    <div>
+    <>
       <div className="p-10">
         <div className="px-2 sm:px-0 animate-pulse">
           <h1 className="rounded-full bg-slate-700 dark:bg-slate-400 h-4 text-transparent w-fit my-4">
@@ -107,6 +107,6 @@ export default function StatisticsSkeleton() {
           </dl>
         </div>
       </div>
-    </div>
+    </>
   );
 }
