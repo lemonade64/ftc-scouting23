@@ -55,12 +55,14 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={poppins.className}>
-      <body className="select-none dark:bg-black">
-        {children}
-        <Analytics />
-        <ToggleMode />
-      </body>
-    </html>
+    <>
+      <html lang="en" className={poppins.className}>
+        <body className="select-none dark:bg-black">
+          {children}
+          <Analytics />
+          <ToggleMode />
+        </body>
+      </html>
+    </>
   );
 }
