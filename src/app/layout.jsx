@@ -27,7 +27,7 @@ export const metadata = {
     siteName: "FTC Scouting",
     images: [
       {
-        url: "https://ftc-scouting.vercel.app/opengraph-image.png",
+        url: "https://ftc-scouting.vercel.app/opengraph-image.webp",
         width: 800,
         height: 400,
         alt: "Scouting App for the 2023/2024 FIRST Tech Challenge World Championship.",
